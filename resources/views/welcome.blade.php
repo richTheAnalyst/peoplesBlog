@@ -25,21 +25,28 @@
         </section>
 
         <section class="mt-20 ">
-            <div class="Content w-full max-w-[1216px] mx-auto relative px-4 sm:px-6 md:px-8 lg:px-0 ">
-                @if ($latestPost)
-                <img class="Image w-full h-auto sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-xl" src="{{ asset('storage/' . $latestPost->image)}}" />
-                  @endif          
-              <div class="Content bg-neutral-200 dark:bg-gray-800 w-full max-w-md sm:max-w-[500px] p-6 sm:p-8 md:p-10 top-[300px] left-4 md:left-[64px] lg:top-[360px] absolute rounded-xl shadow border border-[#242535] flex flex-col gap-6">
+            @if ($latestPost)
+        <img class="Image w-full h-auto sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-xl" src="{{ asset('storage/' . $latestPost->image) }}" alt="{{ $latestPost->title }} image" />
+    @endif
+
+    <div class="Title text-white text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight">
+        <div class="text-black dark:text-white">
+            {{ $latestPost ? $latestPost->title : 'No recent posts available' }}
+        </div>
+    </div>
                 
                 <!-- Heading section -->
                 <div>
                     <div class="Heading flex flex-col gap-4">
                     <div class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
-                      <div class="Text text-black dark:text-white text-sm font-medium leading-tight">
-                        <a href="{{ route('posts.show', $latestPost) }}">
-                            READ POST
-                        </a>
+                    @if ($latestPost)
+                    <div class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+                        <div class="Text text-black dark:text-white text-sm font-medium leading-tight">
+                            <a href="{{ route('posts.show', $latestPost) }}">READ POST</a>
+                        </div>
                     </div>
+                @endif
+
                     </div>
                     <div class="Title text-white text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight">
                       @if($latestPost)

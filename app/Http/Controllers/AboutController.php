@@ -62,6 +62,7 @@ class AboutController extends Controller
             'who_we_are' => 'required|string|max:2000',
         ]);
 
+        $aboutData = About::findOrFail($id);
         $aboutData->update($updatedAbout);
     }
 

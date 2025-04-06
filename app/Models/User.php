@@ -11,6 +11,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
+        'name',
         'first_name',
         'last_name',
         'is_admin',  // To identify admin users
@@ -29,6 +30,22 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+    public function getFilamentName(): string
+    {
+        return $this->name ?? 'User';
+    }
+    public function getName(): string
+    {
+        logger('getName() called: ' . $this->name);
+        // Log the name for debugging
+        return $this->name ?? 'User';
+    }
+    // app/Models/User.php
+
+public function getNameAttribute(): string
+{
+    return "{$this->first_name} {$this->last_name}";
+}
 
     
     public function isAdmin()

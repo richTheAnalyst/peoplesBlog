@@ -13,10 +13,21 @@ class AuthorFactory extends Factory
     public function definition()
     {
         // Store the image file in the public/images directory
-        $imagePath = "images/AR_and_VR_" . uniqid() . ".jpeg"; // A unique name for each image
+        $imagePath = "images/author_" . uniqid() . ".jpg"; // A unique name for each image
         
-        // Simulate uploading the image
-        Storage::disk('public')->put($imagePath, file_get_contents("C:\\Users\\Richard Kodah\\OneDrive\\Desktop\\AR and VR.jpeg"));
+        // Using a placeholder image instead of trying to access a local file
+        // This ensures the factory works on any environment without file dependencies
+        $placeholderUrl = 'https://via.placeholder.com/300x300';
+        
+        try {
+            // Try to get content from placeholder service
+            $imageContent = file_get_contents($placeholderUrl);
+            Storage::disk('public')->put($imagePath, $imageContent);
+        } catch (\Exception $e) {
+            // Fallback - just store the path, but the image will be missing
+            // You could log this error if needed
+            $imagePath = 'images/default-author.jpg';
+        }
     
         return [
             'first_name' => $this->faker->firstName,

@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\AuthorController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AboutController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
@@ -24,8 +25,7 @@ Route::get('/posts/create', [PostController::class, 'create'])->name('posts.crea
 
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/{post}',[PostController::class,'show'])->name('posts.show');
-
+Route::get('posts/{post}',[PostController::class, 'show'])->name('posts.show');
 //auth routes
 Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');

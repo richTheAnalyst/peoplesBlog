@@ -1,9 +1,10 @@
 <x-layout>
     <div class="max-w-3xl mx-auto p-10 bg-white rounded-lg shadow-md dark:bg-gray-900 mt-20">
         @if($post->image)
-            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-64 object-cover rounded-lg mb-4">
+        <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" 
+     class="w-full h-64 object-cover rounded-lg mb-4" 
+     style="border: 2px solid red;">
         @endif
-    
         <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white mb-4">
             {{ $post->title }}
         </h1>
